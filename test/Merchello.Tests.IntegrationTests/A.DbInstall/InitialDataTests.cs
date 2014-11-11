@@ -1,7 +1,7 @@
 ﻿using System.Linq;
 using Merchello.Core.Models.Rdbms;
 using Merchello.Core.Persistence.Migrations.Initial;
-using Merchello.Tests.IntegrationTests.TestHelpers;
+using Merchello.Tests.Base.TestHelpers;
 using NUnit.Framework;
 using Umbraco.Core.Persistence;
 
@@ -13,7 +13,7 @@ namespace Merchello.Tests.IntegrationTests.A.DbInstall
         private BaseDataCreation _creation;
         private UmbracoDatabase _database;
 
-        [SetUp]
+        [TestFixtureSetUp]
         public void Init()
         {
             var worker = new DbPreTestDataWorker();
@@ -21,14 +21,20 @@ namespace Merchello.Tests.IntegrationTests.A.DbInstall
             _creation = new BaseDataCreation(_database);
         }
 
-        /// <summary>
+        [TestFixtureTearDown]
+        public void Teardown()
+        {
+            _database.Dispose();
+        }
+
+                /// <summary>
         /// Test to verify Merchello 
         /// </summary>
         [Test]
         public void Can_Populate_typeFieldData_Into_merchTypeField()
         {
             //// Arrange
-            const int expected = 20;
+            const int expected = 32;
 
             //// Act
             _creation.InitializeBaseData("merchTypeField");
@@ -96,8 +102,8 @@ namespace Merchello.Tests.IntegrationTests.A.DbInstall
             var expected = 3;
 
             //// Act
-            _creation.InitializeBaseData("merchGatewayProvider");
-            var dtos = _database.Query<WarehouseDto>("SELECT * FROM merchGatewayProvider");
+            _creation.InitializeBaseData("merchGatewayProviderSettings");
+            var dtos = _database.Query<WarehouseDto>("SELECT * FROM merchGatewayProviderSettings");
 
             //// Assert
             Assert.IsTrue(dtos.Any());
@@ -108,7 +114,7 @@ namespace Merchello.Tests.IntegrationTests.A.DbInstall
         public void Can_Populate_StoreSettings()
         {
             //// Arrange
-            var expected = 9;
+            const int expected = 11;
 
             //// Act
             _creation.InitializeBaseData("merchStoreSetting");
@@ -119,5 +125,21 @@ namespace Merchello.Tests.IntegrationTests.A.DbInstall
             Assert.AreEqual(expected, dtos.Count());
 
         }
+
+        [Test]
+        public void Can_Populate_ShipmentStatuses()
+        {
+            //// Arrange
+            var expected = 5;
+
+            //// Act
+            _creation.InitializeBaseData("merchShipmentStatus");
+            var dtos = _database.Query<ShipmentStatusDto>("SELECT * FROM merchShipmentStatus");
+
+            //// Assert
+            Assert.IsTrue(dtos.Any());
+            Assert.AreEqual(expected, dtos.Count());
+        }
+
     }
 }

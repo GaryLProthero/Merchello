@@ -1,16 +1,19 @@
-﻿using System.Configuration;
-using Merchello.Core.Models;
-
-
-namespace Merchello.Core.Configuration.Outline
+﻿namespace Merchello.Core.Configuration.Outline
 {
+    using System.Configuration;
+    using System.Diagnostics.CodeAnalysis;
+
+    using Merchello.Core.Models;
+
+    /// <summary>
+    /// The type field definitions element.
+    /// </summary>
+    [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1650:ElementDocumentationMustBeSpelledCorrectly", Justification = "Reviewed. Suppression is OK here.")]
     public class TypeFieldDefinitionsElement : ConfigurationElement
     {
-
         /// <summary>
         /// Gets the dbTypeFields configuration collection for <see cref="ICustomerAddress"/>
         /// </summary>
-        [ConfigurationProperty("customerAddress", IsRequired = false), ConfigurationCollection(typeof(TypeFieldCollection), AddItemName = "type")]
         public TypeFieldCollection CustomerAddress
         {
             get { return (TypeFieldCollection)this["customerAddress"]; }
@@ -25,6 +28,14 @@ namespace Merchello.Core.Configuration.Outline
             get { return (TypeFieldCollection)this["customerItemCache"]; }
         }
 
+        /// <summary>
+        /// Gets the dbTypeFields configuration collection for Entities
+        /// </summary>
+        [ConfigurationProperty("entities", IsRequired =  false), ConfigurationCollection(typeof(TypeFieldCollection), AddItemName = "type")]
+        public TypeFieldCollection Entities
+        {
+            get { return (TypeFieldCollection) this["entities"]; }
+        }
 
         /// <summary>
         /// Gets the dbTypeFields configuration collection for <see cref="IShipMethod"/>
@@ -72,7 +83,7 @@ namespace Merchello.Core.Configuration.Outline
         }
 
         /// <summary>
-        /// Gets the dbTypeFields configuration collection for <see cref="IGatewayProviderBase"/>
+        /// Gets the dbTypeFields configuration collection for <see cref="IGatewayProviderSettings"/>
         /// </summary>
         [ConfigurationProperty("gatewayProvider", IsRequired = false), ConfigurationCollection(typeof(TypeFieldCollection), AddItemName = "type")]
         public TypeFieldCollection GatewayProvider

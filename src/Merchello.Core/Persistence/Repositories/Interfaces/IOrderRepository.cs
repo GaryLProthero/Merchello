@@ -1,14 +1,12 @@
-﻿using System;
-using Merchello.Core.Models;
-using Umbraco.Core.Persistence.Repositories;
-
-namespace Merchello.Core.Persistence.Repositories
+﻿namespace Merchello.Core.Persistence.Repositories
 {
+    using Models;
+    using Models.Rdbms;
+
     /// <summary>
     /// Maker interface for the OrderRepository
     /// </summary>
-    internal interface IOrderRepository : IRepositoryQueryable<Guid, IOrder>
+    internal interface IOrderRepository : IPagedRepository<IOrder, OrderDto>, IAssertsMaxDocumentNumber
     {
-         
     }
 }

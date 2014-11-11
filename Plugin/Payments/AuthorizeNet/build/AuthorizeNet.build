@@ -14,10 +14,10 @@
     <!-- PROPERTIES -->
     <PropertyGroup>
         <VersionMajor>1</VersionMajor>
-        <VersionMinor>0</VersionMinor>
+        <VersionMinor>1</VersionMinor>
         <VersionPatch>0</VersionPatch>
         <VersionSuffix>0</VersionSuffix>
-        <UmbracoVersion>7.1.1</UmbracoVersion>
+        <UmbracoVersion>7.1.4</UmbracoVersion>
     </PropertyGroup>
 
 
@@ -81,7 +81,7 @@
         <ManifestUpdate ManifestFile="$(BuildDir)\package.xml"
 			WorkingDirectory="$(BuildDir)"
 			MinimumRequiredUmbracoVersion="$(UmbracoVersion)"
-			PackageVersion="$(VersionMajor).$(VersionMinor).$(VersionPatch).$(VersionSuffix)"
+			PackageVersion="$(VersionMajor).$(VersionMinor).$(VersionPatch)"
 			Readme="$([System.IO.File]::ReadAllText(readme.txt))"
 			Files="@(ManifestFiles)" />
     </Target>

@@ -1,14 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using Merchello.Core.Models;
-using Merchello.Core.Services;
-using Umbraco.Core;
-using Umbraco.Core.Cache;
-using Umbraco.Core.Logging;
-
-namespace Merchello.Core.Gateways.Taxation.FixedRate
+﻿namespace Merchello.Core.Gateways.Taxation.FixedRate
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Data;
+    using System.Linq;
+
+    using Merchello.Core.Models;
+    using Merchello.Core.Services;
+
+    using Umbraco.Core;
+    using Umbraco.Core.Cache;
+    using Umbraco.Core.Logging;
+
     /// <summary>
     /// Represents the CountryTaxRateTaxationGatewayProvider.  
     /// </summary>
@@ -20,9 +23,25 @@ namespace Merchello.Core.Gateways.Taxation.FixedRate
     [GatewayProviderActivation("A4AD4331-C278-4231-8607-925E0839A6CD", "Fixed Rate Tax Provider", "Fixed Rate Tax Provider")]
     public class FixedRateTaxationGatewayProvider : TaxationGatewayProviderBase, IFixedRateTaxationGatewayProvider
     {
-        public FixedRateTaxationGatewayProvider(IGatewayProviderService gatewayProviderService, IGatewayProvider gatewayProvider, IRuntimeCacheProvider runtimeCacheProvider) 
-            : base(gatewayProviderService, gatewayProvider, runtimeCacheProvider)
-        { }
+        /// <summary>
+        /// Initializes a new instance of the <see cref="FixedRateTaxationGatewayProvider"/> class.
+        /// </summary>
+        /// <param name="gatewayProviderService">
+        /// The gateway provider service.
+        /// </param>
+        /// <param name="gatewayProviderSettings">
+        /// The gateway provider settings.
+        /// </param>
+        /// <param name="runtimeCacheProvider">
+        /// The runtime cache provider.
+        /// </param>
+        public FixedRateTaxationGatewayProvider(
+            IGatewayProviderService gatewayProviderService,
+            IGatewayProviderSettings gatewayProviderSettings,
+            IRuntimeCacheProvider runtimeCacheProvider)
+            : base(gatewayProviderService, gatewayProviderSettings, runtimeCacheProvider)
+        {
+        }
 
         /// <summary>
         /// Creates a <see cref="ITaxationGatewayMethod"/>
@@ -33,17 +52,18 @@ namespace Merchello.Core.Gateways.Taxation.FixedRate
         public override ITaxationGatewayMethod CreateTaxMethod(string countryCode, decimal taxPercentageRate)
         {
             var attempt = ListResourcesOffered().FirstOrDefault(x => x.ServiceCode.Equals(countryCode)) != null
-                ? GatewayProviderService.CreateTaxMethodWithKey(GatewayProvider.Key, countryCode, taxPercentageRate)
-                : Attempt<ITaxMethod>.Fail(new InvalidOperationException("A fixed tax rate method has already been defined for " + countryCode));
+                ? GatewayProviderService.CreateTaxMethodWithKey(GatewayProviderSettings.Key, countryCode, taxPercentageRate)
+                : Attempt<ITaxMethod>.Fail(new ConstraintException("A fixed tax rate method has already been defined for " + countryCode));
 
 
-            if (!attempt.Success)
+            if (attempt.Success)
             {
-                LogHelper.Error<TaxationGatewayProviderBase>("CreateTaxMethod failed.", attempt.Exception);
-                throw attempt.Exception;
+                return new FixRateTaxationGatewayMethod(attempt.Result);                   
             }
 
-            return new FixRateTaxationGatewayMethod(attempt.Result);
+            LogHelper.Error<TaxationGatewayProviderBase>("CreateTaxMethod failed.", attempt.Exception);
+
+            throw attempt.Exception;
         }
 
         /// <summary>

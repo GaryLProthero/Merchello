@@ -52,34 +52,257 @@
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="interfaces, Version=1.0.5206.24609, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\UmbracoCms.Core.7.1.1\lib\interfaces.dll</HintPath>
+    <Reference Include="AutoMapper">
+      <HintPath>..\packages\AutoMapper.3.0.0\lib\net40\AutoMapper.dll</HintPath>
+      <Private>True</Private>
     </Reference>
-    <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+    <Reference Include="AutoMapper.Net4">
+      <HintPath>..\packages\AutoMapper.3.0.0\lib\net40\AutoMapper.Net4.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="businesslogic, Version=1.0.5394.16133, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Newtonsoft.Json.4.5.11\lib\net40\Newtonsoft.Json.dll</HintPath>
+      <HintPath>..\packages\UmbracoCms.Core.7.1.8\lib\businesslogic.dll</HintPath>
+    </Reference>
+    <Reference Include="ClientDependency.Core">
+      <HintPath>..\packages\ClientDependency.1.7.1.2\lib\ClientDependency.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="ClientDependency.Core.Mvc">
+      <HintPath>..\packages\ClientDependency-Mvc.1.7.0.4\lib\ClientDependency.Core.Mvc.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="cms, Version=1.0.5394.16133, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\UmbracoCms.Core.7.1.8\lib\cms.dll</HintPath>
+    </Reference>
+    <Reference Include="controls, Version=1.0.5394.16134, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\UmbracoCms.Core.7.1.8\lib\controls.dll</HintPath>
+    </Reference>
+    <Reference Include="CookComputing.XmlRpcV2">
+      <HintPath>..\packages\xmlrpcnet.2.5.0\lib\net20\CookComputing.XmlRpcV2.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Examine">
+      <HintPath>..\packages\Examine.0.1.57.2941\lib\Examine.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="HtmlAgilityPack">
+      <HintPath>..\packages\HtmlAgilityPack.1.4.6\lib\Net45\HtmlAgilityPack.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="ICSharpCode.SharpZipLib">
+      <HintPath>..\packages\SharpZipLib.0.86.0\lib\20\ICSharpCode.SharpZipLib.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="ImageProcessor">
+      <HintPath>..\packages\ImageProcessor.1.9.5.0\lib\ImageProcessor.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="ImageProcessor.Web">
+      <HintPath>..\packages\ImageProcessor.Web.3.3.0.0\lib\net45\ImageProcessor.Web.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="interfaces, Version=1.0.5394.16130, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\UmbracoCms.Core.7.1.8\lib\interfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="log4net, Version=1.2.11.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\UmbracoCms.Core.7.1.8\lib\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="Lucene.Net">
+      <HintPath>..\packages\Lucene.Net.2.9.4.1\lib\net40\Lucene.Net.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.ApplicationBlocks.Data, Version=1.0.1559.20655, Culture=neutral">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\UmbracoCms.Core.7.1.8\lib\Microsoft.ApplicationBlocks.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.Helpers, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\UmbracoCms.Core.7.1.8\lib\Microsoft.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.Infrastructure">
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Web.Mvc.FixedDisplayModes">
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.FixedDisplayModes.1.0.1\lib\net40\Microsoft.Web.Mvc.FixedDisplayModes.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="MiniProfiler">
+      <HintPath>..\packages\MiniProfiler.2.1.0\lib\net40\MiniProfiler.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="MySql.Data">
+      <HintPath>..\packages\MySql.Data.6.6.5\lib\net40\MySql.Data.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="SQLCE4Umbraco, Version=1.0.5394.16134, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\UmbracoCms.Core.7.1.8\lib\SQLCE4Umbraco.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Net.Http" />
-    <Reference Include="System.Net.Http.WebRequest" />
+    <Reference Include="System.Data.SqlServerCe, Version=4.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\UmbracoCms.Core.7.1.8\lib\System.Data.SqlServerCe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Data.SqlServerCe.Entity, Version=4.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\UmbracoCms.Core.7.1.8\lib\System.Data.SqlServerCe.Entity.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.Formatting">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.4.0.30506.0\lib\net40\System.Net.Http.Formatting.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Runtime.Caching" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Web" />
+    <Reference Include="System.Web.Helpers">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.20710.0\lib\net40\System.Web.Helpers.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Http">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.4.0.30506.0\lib\net40\System.Web.Http.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.4.0.30506.0\lib\net40\System.Web.Http.WebHost.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Mvc">
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.4.0.30506.0\lib\net40\System.Web.Mvc.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Razor">
+      <HintPath>..\packages\Microsoft.AspNet.Razor.2.0.20710.0\lib\net40\System.Web.Razor.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.WebPages">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.20710.0\lib\net40\System.Web.WebPages.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.20710.0\lib\net40\System.Web.WebPages.Deployment.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.20710.0\lib\net40\System.Web.WebPages.Razor.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
-    <Reference Include="Umbraco.Core, Version=1.0.5206.24609, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="TidyNet, Version=1.0.0.0, Culture=neutral">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\UmbracoCms.Core.7.1.1\lib\Umbraco.Core.dll</HintPath>
+      <HintPath>..\packages\UmbracoCms.Core.7.1.8\lib\TidyNet.dll</HintPath>
+    </Reference>
+    <Reference Include="umbraco, Version=1.0.5394.16136, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\UmbracoCms.Core.7.1.8\lib\umbraco.dll</HintPath>
+    </Reference>
+    <Reference Include="Umbraco.Core, Version=1.0.5394.16131, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\UmbracoCms.Core.7.1.8\lib\Umbraco.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="umbraco.DataLayer, Version=1.0.5394.16132, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\UmbracoCms.Core.7.1.8\lib\umbraco.DataLayer.dll</HintPath>
+    </Reference>
+    <Reference Include="umbraco.editorControls, Version=1.0.5394.16138, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\UmbracoCms.Core.7.1.8\lib\umbraco.editorControls.dll</HintPath>
+    </Reference>
+    <Reference Include="umbraco.MacroEngines, Version=1.0.5394.16139, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\UmbracoCms.Core.7.1.8\lib\umbraco.MacroEngines.dll</HintPath>
+    </Reference>
+    <Reference Include="umbraco.providers, Version=1.0.5394.16134, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\UmbracoCms.Core.7.1.8\lib\umbraco.providers.dll</HintPath>
+    </Reference>
+    <Reference Include="Umbraco.Web.UI, Version=1.0.5394.16139, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\UmbracoCms.Core.7.1.8\lib\Umbraco.Web.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="umbraco.XmlSerializers, Version=1.0.5394.16136, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\UmbracoCms.Core.7.1.8\lib\umbraco.XmlSerializers.dll</HintPath>
+    </Reference>
+    <Reference Include="UmbracoExamine, Version=0.6.0.16133, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\UmbracoCms.Core.7.1.8\lib\UmbracoExamine.dll</HintPath>
+    </Reference>
+    <Reference Include="UrlRewritingNet.UrlRewriter, Version=2.0.60829.1, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\UmbracoCms.Core.7.1.8\lib\UrlRewritingNet.UrlRewriter.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ActivatorHelper.cs" />
+    <Compile Include="Configuration\Outline\CustomerElement.cs" />
+    <Compile Include="Configuration\Outline\TreeCollection.cs" />
+    <Compile Include="Configuration\Outline\ReplacementCollection.cs" />
+    <Compile Include="Configuration\Outline\ReplaceElement.cs" />
+    <Compile Include="Configuration\Outline\TreeElement.cs" />
+    <Compile Include="Events\PaymentAttemptEventArgs.cs" />
+    <Compile Include="Events\SalesPreparationEventArgs.cs" />
+    <Compile Include="Formatters\IPatternReplaceFormatter.cs" />
+    <Compile Include="Formatters\IReplaceablePattern.cs" />
+    <Compile Include="Formatters\PatternReplaceFormatter.cs" />
+    <Compile Include="Formatters\ReplaceablePattern.cs" />
+    <Compile Include="Gateways\GatewayEvents.cs" />
+    <Compile Include="Gateways\GatewayMethodUiAttribute.cs" />
+    <Compile Include="Gateways\Notification\Monitors\INotificationMonitorBase.cs" />
+    <Compile Include="Gateways\Notification\Monitors\NotificationMonitorEvents.cs" />
+    <Compile Include="Gateways\Notification\Monitors\OrderShippedMonitor.cs" />
+    <Compile Include="Gateways\Notification\Monitors\PartialOrderShippedMonitor.cs" />
+    <Compile Include="Gateways\Notification\Triggering\IShipmentResult.cs" />
+    <Compile Include="Gateways\Notification\Triggering\OrderShippedTrigger.cs" />
+    <Compile Include="Gateways\Notification\Triggering\PartialOrderShippedTrigger.cs" />
+    <Compile Include="Models\AddressExtensions.cs" />
+    <Compile Include="Models\AuditLog.cs" />
+    <Compile Include="Models\CustomerExtensions.cs" />
+    <Compile Include="Models\Interfaces\IAuditLog.cs" />
+    <Compile Include="Models\Interfaces\IOrderByField.cs" />
+    <Compile Include="Models\Interfaces\IShipmentStatus.cs" />
+    <Compile Include="Models\ShipmentStatus.cs" />
+    <Compile Include="Models\MonitorModels\INotifyModel.cs" />
+    <Compile Include="Models\MonitorModels\MonitorModelExtensions.cs" />
+    <Compile Include="Models\MonitorModels\NotifyModelBase.cs" />
+    <Compile Include="Models\MonitorModels\PaymentResultNotifyModel.cs" />
+    <Compile Include="Gateways\Notification\Monitors\OrderConfirmationMonitor.cs" />
+    <Compile Include="Gateways\Notification\Monitors\NotificationMonitorBase.cs" />
+    <Compile Include="Models\MonitorModels\IPaymentResultMonitorModel.cs" />
+    <Compile Include="Gateways\Notification\Triggering\INotificationTrigger.cs" />
+    <Compile Include="Gateways\Notification\Triggering\NotificationTriggerBase.cs" />
+    <Compile Include="Gateways\Notification\Triggering\OrderConfirmationTrigger.cs" />
+    <Compile Include="Models\MonitorModels\ShippingResultNotifyModel.cs" />
+    <Compile Include="Models\NotifiedStatusBase.cs" />
+    <Compile Include="Models\Querying\public InvoiceOrderByFields.cs" />
+    <Compile Include="Models\Rdbms\CustomerIndexDto.cs" />
+    <Compile Include="Models\Rdbms\IPageableDto.cs" />
+    <Compile Include="Models\Rdbms\ShipmentStatusDto.cs" />
+    <Compile Include="Notification.cs" />
+    <Compile Include="NotificationExtensions.cs" />
+    <Compile Include="Observation\IMonitor.cs" />
+    <Compile Include="Observation\IMonitorResolver.cs" />
+    <Compile Include="Observation\ITrigger.cs" />
+    <Compile Include="Observation\MonitorBase.cs" />
+    <Compile Include="Observation\MonitorResolver.cs" />
+    <Compile Include="Observation\ObservationExtensions.cs" />
+    <Compile Include="Observation\Topic.cs" />
+    <Compile Include="Observation\TriggerForAttribute.cs" />
+    <Compile Include="Events\ObservationChannelEventArgs.cs" />
     <Compile Include="Builders\BuildChainBase.cs" />
     <Compile Include="Builders\InvoiceBuilderChain.cs" />
     <Compile Include="Builders\OrderBuilderChain.cs" />
@@ -98,20 +321,56 @@
     <Compile Include="Chains\ShipmentCreation\RemoveShipmentOrderItemsFromInventoryAndPersistShipmentTask.cs" />
     <Compile Include="Chains\ShipmentCreation\SetOrderStatusTask.cs" />
     <Compile Include="EnumerableExtensions.cs" />
+    <Compile Include="Events\NotificationEventArgs.cs" />
+    <Compile Include="Formatters\DefaultFormatter.cs" />
     <Compile Include="Gateways\GatewayMethodEditorAttribute.cs" />
     <Compile Include="Gateways\GatewayProviderActivationAttribute.cs" />
     <Compile Include="Gateways\GatewayProviderEditorAttribute.cs" />
+    <Compile Include="Gateways\GatewayProviderResolver.cs" />
+    <Compile Include="Gateways\IGatewayProviderResolver.cs" />
+    <Compile Include="Gateways\Notification\INotificationContext.cs" />
+    <Compile Include="Gateways\Notification\INotificationGatewayMethod.cs" />
+    <Compile Include="Gateways\Notification\NotificationContext.cs" />
+    <Compile Include="Gateways\Notification\NotificationGatewayMethodBase.cs" />
+    <Compile Include="Gateways\Notification\NotificationGatewayProviderBase.cs" />
+    <Compile Include="Gateways\Notification\Smtp\ISmtpNotificationGatewayProvider.cs" />
+    <Compile Include="Gateways\Notification\Smtp\SmtpNotificationGatewayMethod.cs" />
+    <Compile Include="Gateways\Notification\Smtp\SmtpNotificationGatewayProvider.cs" />
+    <Compile Include="Gateways\Notification\Smtp\SmtpNotificationGatewayProviderSettings.cs" />
+    <Compile Include="Gateways\Notification\Smtp\SmtpProviderEvents.cs" />
+    <Compile Include="Gateways\Notification\Smtp\SmtpProviderExtendedDataExtensions.cs" />
     <Compile Include="Gateways\Payment\Cash\CashPaymentGatewayMethod.cs" />
     <Compile Include="Gateways\Payment\Cash\CashPaymentGatewayProvider.cs" />
     <Compile Include="Gateways\Payment\Cash\ICashPaymentGatewayMethod.cs" />
     <Compile Include="Gateways\Payment\Cash\ICashPaymentGatewayProvider.cs" />
-    <Compile Include="Gateways\Payment\PaymentGatewayProviderResolver.cs" />
     <Compile Include="Gateways\Payment\PaymentResult.cs" />
     <Compile Include="Gateways\Payment\ProcessorArgumentCollection.cs" />
     <Compile Include="Gateways\IGatewayMethod.cs" />
     <Compile Include="Gateways\Payment\PaymentGatewayMethodBase.cs" />
     <Compile Include="Gateways\Payment\IPaymentGatewayMethod.cs" />
     <Compile Include="Gateways\Payment\IPaymentResult.cs" />
+    <Compile Include="ObjectResolution\MerchelloManyObjectsResolverBase.cs" />
+    <Compile Include="Observation\MonitorForAttribute.cs" />
+    <Compile Include="Observation\Unsubscriber.cs" />
+    <Compile Include="Persistence\Factories\AuditLogFactory.cs" />
+    <Compile Include="Persistence\Factories\ShipmentStatusFactory.cs" />
+    <Compile Include="Persistence\Mappers\AuditLogMapper.cs" />
+    <Compile Include="Persistence\Mappers\ShipmentStatusMapper.cs" />
+    <Compile Include="Persistence\Mappers\WarehouseCatalogMapper.cs" />
+    <Compile Include="Persistence\Migrations\DataLossException.cs" />
+    <Compile Include="Persistence\Migrations\Upgrades\TargetVersionOneOneOne\RecreateNotificaitonMessageTable.cs" />
+    <Compile Include="Persistence\Querying\QueryExtensions.cs" />
+    <Compile Include="Persistence\Querying\SortDirection.cs" />
+    <Compile Include="Persistence\Repositories\AuditLogRepository.cs" />
+    <Compile Include="Persistence\Repositories\Interfaces\IAssertsDocumentNumber.cs" />
+    <Compile Include="Persistence\Repositories\Interfaces\IAuditLogRepository.cs" />
+    <Compile Include="Persistence\Repositories\Interfaces\IPagedRepository.cs" />
+    <Compile Include="Persistence\Repositories\Interfaces\IShipmentStatusRepository.cs" />
+    <Compile Include="Persistence\Repositories\Interfaces\IWarehouseCatalogRepository.cs" />
+    <Compile Include="Persistence\Repositories\PagedRepositoryBase.cs" />
+    <Compile Include="Persistence\Repositories\ShipmentStatusRepository.cs" />
+    <Compile Include="Persistence\Repositories\WarehouseCatalogRepository.cs" />
+    <Compile Include="PluginManagerExtensions.cs" />
     <Compile Include="Gateways\Shipping\FixedRate\FixedRateShipmentLineItemVisitor.cs" />
     <Compile Include="Gateways\Shipping\FixedRate\FixedRateShippingGatewayMethod.cs" />
     <Compile Include="Gateways\Shipping\FixedRate\FixedRateShippingGatewayProvider.cs" />
@@ -119,7 +378,6 @@
     <Compile Include="Gateways\Shipping\FixedRate\IFixedRateShippingGatewayProvider.cs" />
     <Compile Include="Gateways\Shipping\FixedRate\IShippingFixedRateTable.cs" />
     <Compile Include="Gateways\Shipping\FixedRate\ShippingFixedRateTable.cs" />
-    <Compile Include="Gateways\Shipping\ShippingGatewayProviderResolver.cs" />
     <Compile Include="Gateways\Taxation\FixedRate\FixedRateTaxationGatewayProvider.cs" />
     <Compile Include="Gateways\Taxation\FixedRate\FixedRateTaxCalculationStrategy.cs" />
     <Compile Include="Gateways\Taxation\FixedRate\FixRateTaxationGatewayMethod.cs" />
@@ -127,32 +385,72 @@
     <Compile Include="Gateways\Taxation\FixedRate\IFixedRateTaxationGatewayProvider.cs" />
     <Compile Include="Gateways\Taxation\TaxationGatewayMethodBase.cs" />
     <Compile Include="Gateways\Taxation\ITaxationGatewayMethod.cs" />
-    <Compile Include="Gateways\Taxation\TaxationGatewayProviderResolver.cs" />
     <Compile Include="Gateways\Taxation\TaxCalculationResult.cs" />
     <Compile Include="Gateways\Taxation\TaxableLineItemVisitor.cs" />
-    <Compile Include="Gateways\GatewayResolutionApplicationEventListener.cs" />
     <Compile Include="Models\Currency.cs" />
-    <Compile Include="Models\Interfaces\IExtendedDataEntity.cs" />
+    <Compile Include="Models\Interfaces\IHasExtendedData.cs" />
     <Compile Include="Models\Interfaces\IGatewayProviderMethod.cs" />
     <Compile Include="Models\Interfaces\ICurrency.cs" />
+    <Compile Include="Models\Interfaces\INotificationMethod.cs" />
+    <Compile Include="Models\Interfaces\INotificationMessage.cs" />
+    <Compile Include="Models\Interfaces\INotifyStatus.cs" />
     <Compile Include="Models\Interfaces\IOrder.cs" />
     <Compile Include="Models\Interfaces\IOrderStatus.cs" />
     <Compile Include="Models\Interfaces\IPaymentMethod.cs" />
     <Compile Include="Models\InvoiceExtensions.cs" />
     <Compile Include="Models\LocalizationExtensions.cs" />
+    <Compile Include="Models\NotificationMessage.cs" />
+    <Compile Include="Models\NotificationMethod.cs" />
     <Compile Include="Models\Order.cs" />
     <Compile Include="Models\OrderCollection.cs" />
     <Compile Include="Models\OrderExtensions.cs" />
     <Compile Include="Models\OrderStatus.cs" />
     <Compile Include="Models\PaymentExtensions.cs" />
     <Compile Include="Models\PaymentMethod.cs" />
+    <Compile Include="Models\Rdbms\AuditLogDto.cs" />
     <Compile Include="Models\Rdbms\InvoiceIndexDto.cs" />
+    <Compile Include="Models\Rdbms\NotificationMessageDto.cs" />
+    <Compile Include="Models\Rdbms\NotificationMethodDto.cs" />
     <Compile Include="Models\Rdbms\OrderIndexDto.cs" />
     <Compile Include="Models\Rdbms\PaymentMethodDto.cs" />
+    <Compile Include="Models\Rdbms\User2AppDto.cs" />
+    <Compile Include="Models\Rdbms\UserDto.cs" />
+    <Compile Include="Models\TypeFields\EntityTypeField.cs" />
+    <Compile Include="Models\TypeFields\Interfaces\IEntityTypeField.cs" />
+    <Compile Include="Gateways\Notification\FormatStatus.cs" />
+    <Compile Include="Gateways\Notification\IFormattedNotificationMessage.cs" />
+    <Compile Include="Gateways\Notification\INotificationGatewayProvider.cs" />
+    <Compile Include="Formatters\IFormatter.cs" />
+    <Compile Include="Gateways\Notification\FormattedNotificationMessage.cs" />
+    <Compile Include="Gateways\Notification\Smtp\SmtpClientExtensions.cs" />
+    <Compile Include="Persistence\DatabaseModelDefinitions\DbIndexDefinition.cs" />
+    <Compile Include="Persistence\Factories\InvoiceLineItemFactory.cs" />
+    <Compile Include="Persistence\Factories\ItemCacheLineItemFactory.cs" />
+    <Compile Include="Persistence\Factories\NotificationMessageFactory.cs" />
+    <Compile Include="Persistence\Factories\NotificationMethodFactory.cs" />
+    <Compile Include="Persistence\Factories\OrderLineItemFactory.cs" />
     <Compile Include="Persistence\Factories\OrderStatusFactory.cs" />
+    <Compile Include="Persistence\Mappers\NotificationMessageMapper.cs" />
+    <Compile Include="Persistence\Mappers\NotificationMethodMapper.cs" />
+    <Compile Include="Persistence\Migrations\DatabaseSchemaHelper.cs" />
+    <Compile Include="Persistence\Migrations\Upgrades\TargetVersionOneOneZero\AddShippedDateColumn.cs" />
+    <Compile Include="Persistence\Migrations\Upgrades\TargetVersionOneOneZero\CreateOneOneZeroTables.cs" />
+    <Compile Include="Persistence\Migrations\Upgrades\TargetVersionOneOneZero\InsertNewTypeFieldData.cs" />
+    <Compile Include="Persistence\Repositories\Interfaces\IInvoiceLineItemRepository.cs" />
     <Compile Include="Persistence\Repositories\Interfaces\IInvoiceStatusRepository.cs" />
+    <Compile Include="Persistence\Repositories\Interfaces\IItemCacheLineItemRepository.cs" />
+    <Compile Include="Persistence\Repositories\Interfaces\ILineItemRepositoryBase.cs" />
+    <Compile Include="Persistence\Repositories\Interfaces\INotificationMessageRepository.cs" />
+    <Compile Include="Persistence\Repositories\Interfaces\INotificationMethodRepository.cs" />
+    <Compile Include="Persistence\Repositories\Interfaces\IOrderLineItemRepository.cs" />
     <Compile Include="Persistence\Repositories\Interfaces\IOrderStatusRepository.cs" />
+    <Compile Include="Persistence\Repositories\InvoiceLineItemRepository.cs" />
     <Compile Include="Persistence\Repositories\InvoiceStatusRepository.cs" />
+    <Compile Include="Persistence\Repositories\ItemCacheLineItemRepository.cs" />
+    <Compile Include="Persistence\Repositories\LineItemRepositoryBase.cs" />
+    <Compile Include="Persistence\Repositories\NotificationMessageRepository.cs" />
+    <Compile Include="Persistence\Repositories\NotificationMethodRepository.cs" />
+    <Compile Include="Persistence\Repositories\OrderLineItemRepository.cs" />
     <Compile Include="Persistence\Repositories\OrderStatusRepository.cs" />
     <Compile Include="Sales\SalePreparationBase.cs" />
     <Compile Include="Sales\ISalePreparationBase.cs" />
@@ -180,16 +478,15 @@
     <Compile Include="Constants-ExtendedDataKeys.cs">
       <DependentUpon>Constants.cs</DependentUpon>
     </Compile>
+    <Compile Include="Constants-ProductEditor.cs">
+      <DependentUpon>Constants.cs</DependentUpon>
+    </Compile>
     <Compile Include="Gateways\GatewayContext.cs" />
     <Compile Include="Gateways\GatewayProviderBase.cs" />
     <Compile Include="Gateways\IGatewayContext.cs" />
     <Compile Include="Gateways\GatewayProviderTypedContextBase.cs" />
-    <Compile Include="Gateways\GatewayProviderFactory.cs" />
-    <Compile Include="Gateways\GatewayProviderResolver.cs" />
     <Compile Include="Gateways\IProvider.cs" />
     <Compile Include="Gateways\IGatewayProviderTypedContextBase.cs" />
-    <Compile Include="Gateways\IGatewayProviderFactory.cs" />
-    <Compile Include="Gateways\IGatewayProviderResolver.cs" />
     <Compile Include="Gateways\Payment\IPaymentContext.cs" />
     <Compile Include="Gateways\Payment\IPaymentGatewayProvider.cs" />
     <Compile Include="Gateways\Payment\PaymentContext.cs" />
@@ -211,11 +508,7 @@
     <Compile Include="Gateways\Taxation\ITaxationGatewayProvider.cs" />
     <Compile Include="Gateways\Taxation\TaxationContext.cs" />
     <Compile Include="Gateways\Taxation\TaxationGatewayProviderBase.cs" />
-    <Compile Include="ISalesManager.cs" />
     <Compile Include="Models\Address.cs" />
-    <Compile Include="Models\AnonymousCustomerBase.cs">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="Models\AppliedPayment.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -239,7 +532,7 @@
     </Compile>
     <Compile Include="Models\GatewayProviderCollection.cs" />
     <Compile Include="Gateways\GatewayResource.cs" />
-    <Compile Include="Models\GatewayProvider.cs" />
+    <Compile Include="Models\GatewayProviderSettings.cs" />
     <Compile Include="Gateways\IGatewayResource.cs" />
     <Compile Include="Models\Interfaces\IAddress.cs" />
     <Compile Include="Models\Interfaces\IAppliedPayment.cs">
@@ -254,7 +547,7 @@
     <Compile Include="Models\Interfaces\ICustomerBase.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Models\Interfaces\IGatewayProvider.cs" />
+    <Compile Include="Models\Interfaces\IGatewayProviderSettings.cs" />
     <Compile Include="Models\Interfaces\IInvoice.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -411,7 +704,7 @@
     <Compile Include="Models\TypeFields\AppliedPaymentTypeField.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Models\TypeFields\IAppliedPaymentTypeField.cs">
+    <Compile Include="Models\TypeFields\Interfaces\IAppliedPaymentTypeField.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Models\Warehouse.cs">
@@ -433,7 +726,7 @@
     <Compile Include="Persistence\Factories\TaxMethodFactory.cs" />
     <Compile Include="Persistence\Factories\CustomerAddressFactory.cs" />
     <Compile Include="Persistence\Factories\CustomerFactory.cs" />
-    <Compile Include="Persistence\Factories\GatewayProviderFactory.cs" />
+    <Compile Include="Persistence\Factories\GatewayProviderSettingsFactory.cs" />
     <Compile Include="Persistence\Factories\IEntityFactory.cs" />
     <Compile Include="Persistence\Factories\CatalogInventoryFactory.cs" />
     <Compile Include="Persistence\Factories\InvoiceFactory.cs" />
@@ -534,7 +827,6 @@
     <Compile Include="Persistence\Repositories\Interfaces\IGatewayProviderRepository.cs" />
     <Compile Include="Persistence\Repositories\Interfaces\IInvoiceRepository.cs" />
     <Compile Include="Persistence\Repositories\Interfaces\IItemCacheRepository.cs" />
-    <Compile Include="Persistence\Repositories\Interfaces\ILineItemRepository.cs" />
     <Compile Include="Persistence\Repositories\Interfaces\IPaymentRepository.cs" />
     <Compile Include="Persistence\Repositories\Interfaces\IProductRepository.cs" />
     <Compile Include="Persistence\Repositories\Interfaces\IProductVariantRepository.cs" />
@@ -546,7 +838,6 @@
     <Compile Include="Persistence\Repositories\Interfaces\IWarehouseRepository.cs" />
     <Compile Include="Persistence\Repositories\InvoiceRepository.cs" />
     <Compile Include="Persistence\Repositories\ItemCacheRepository.cs" />
-    <Compile Include="Persistence\Repositories\LineItemRepository.cs" />
     <Compile Include="Persistence\Repositories\PaymentRepository.cs" />
     <Compile Include="Persistence\Repositories\ProductRepository.cs" />
     <Compile Include="Persistence\Repositories\ProductVariantRepository.cs" />
@@ -585,22 +876,22 @@
     <Compile Include="Models\Rdbms\OrderItemDto.cs" />
     <Compile Include="Models\Rdbms\OrderStatusDto.cs" />
     <Compile Include="Models\Rdbms\OrderDto.cs" />
-    <Compile Include="Models\Rdbms\GatewayProviderDto.cs" />
+    <Compile Include="Models\Rdbms\GatewayProviderSettingsDto.cs" />
     <Compile Include="Models\Rdbms\ProductAttributeDto.cs" />
     <Compile Include="Models\Rdbms\ProductOptionDto.cs" />
     <Compile Include="Models\Rdbms\Product2ProductOptionDto.cs" />
     <Compile Include="Models\Rdbms\ProductVariantDto.cs" />
     <Compile Include="Models\Rdbms\ProductVariant2ProductAttributeDto.cs" />
     <Compile Include="Models\Rdbms\ProductDto.cs" />
-    <Compile Include="Models\TypeFields\IGatewayProviderTypeField.cs" />
+    <Compile Include="Models\TypeFields\Interfaces\IGatewayProviderTypeField.cs" />
     <Compile Include="Models\TypeFields\GatewayProviderTypeField.cs" />
-    <Compile Include="Models\TypeFields\IAddressTypeField.cs" />
-    <Compile Include="Models\TypeFields\IItemCacheTypeField.cs" />
-    <Compile Include="Models\TypeFields\ICustomTypeField.cs" />
-    <Compile Include="Models\TypeFields\ILineItemTypeField.cs" />
-    <Compile Include="Models\TypeFields\IPaymentMethodTypeField.cs" />
-    <Compile Include="Models\TypeFields\IProductTypeField.cs" />
-    <Compile Include="Models\TypeFields\ITypeFieldMapper.cs" />
+    <Compile Include="Models\TypeFields\Interfaces\IAddressTypeField.cs" />
+    <Compile Include="Models\TypeFields\Interfaces\IItemCacheTypeField.cs" />
+    <Compile Include="Models\TypeFields\Interfaces\ICustomTypeField.cs" />
+    <Compile Include="Models\TypeFields\Interfaces\ILineItemTypeField.cs" />
+    <Compile Include="Models\TypeFields\Interfaces\IPaymentMethodTypeField.cs" />
+    <Compile Include="Models\TypeFields\Interfaces\IProductTypeField.cs" />
+    <Compile Include="Models\TypeFields\Interfaces\ITypeFieldMapper.cs" />
     <Compile Include="Models\TypeFields\EnumTypeFieldConverter.cs" />
     <Compile Include="Cache\ObjectCacheRuntimeCacheProvider.cs" />
     <Compile Include="Cache\StaticCacheProvider.cs" />
@@ -617,13 +908,27 @@
     <Compile Include="Chains\AttemptChainEndOfChainHandler.cs" />
     <Compile Include="Chains\AttemptChainTaskHandler.cs" />
     <Compile Include="RateAdjustmentType.cs" />
+    <Compile Include="Sales\SalesPreparationEvents.cs" />
     <Compile Include="SerializationHelper.cs" />
+    <Compile Include="Services\AnonymousCustomerService.cs" />
     <Compile Include="Services\AppliedPaymentService.cs" />
+    <Compile Include="Services\AuditLogService.cs" />
+    <Compile Include="Services\CustomerAddressService.cs" />
+    <Compile Include="Services\Interfaces\IAnonymousCustomerService.cs" />
     <Compile Include="Services\Interfaces\IAppliedPaymentService.cs" />
+    <Compile Include="Services\Interfaces\IAuditLogService.cs" />
+    <Compile Include="Services\Interfaces\ICustomerAddressService.cs" />
+    <Compile Include="Services\Interfaces\INotificationMessageService.cs" />
+    <Compile Include="Services\Interfaces\INotificationMethodService.cs" />
     <Compile Include="Services\Interfaces\IOrderService.cs" />
+    <Compile Include="Services\Interfaces\IPageCachedService.cs" />
     <Compile Include="Services\Interfaces\IPaymentMethodService.cs" />
     <Compile Include="Services\Interfaces\IPaymentService.cs" />
+    <Compile Include="Services\Interfaces\IWarehouseCatalogService.cs" />
+    <Compile Include="Services\NotificationMessageService.cs" />
+    <Compile Include="Services\NotificationMethodService.cs" />
     <Compile Include="Services\OrderService.cs" />
+    <Compile Include="Services\PageCachedServiceBase.cs" />
     <Compile Include="Services\PaymentMethodService.cs" />
     <Compile Include="Services\PaymentService.cs" />
     <Compile Include="Services\TaxMethodService.cs" />
@@ -653,14 +958,20 @@
     <Compile Include="Services\ShipRateTierService.cs" />
     <Compile Include="Services\StoreSettingService.cs" />
     <Compile Include="Services\ShipmentService.cs" />
+    <Compile Include="Services\WarehouseCatalogService.cs" />
     <Compile Include="Services\WarehouseService.cs" />
-    <Compile Include="IStrategy.cs" />
+    <Compile Include="Strategies\IStrategy.cs" />
     <Compile Include="Gateways\Shipping\IShipmentRateQuoteStrategy.cs" />
     <Compile Include="Gateways\Taxation\ITaxCalculationStrategy.cs" />
+    <Compile Include="Strategies\Merging\ILineItemContainerMergingStrategy.cs" />
     <Compile Include="Strategies\Packaging\DefaultWarehousePackagingStrategy.cs" />
     <Compile Include="Strategies\Packaging\PackagingStrategyBase.cs" />
     <Compile Include="Strategies\Packaging\IPackagingStrategy.cs" />
     <Compile Include="Strategies\Packaging\ShippableProductVisitor.cs" />
+    <Compile Include="Observation\IObservableTrigger.cs" />
+    <Compile Include="Observation\TriggerResolver.cs" />
+    <Compile Include="Observation\ITriggerResolver.cs" />
+    <Compile Include="Observation\TriggerBase.cs" />
     <Compile Include="TypeFieldMapperEnumerations.cs" />
     <Compile Include="Models\TypeFields\ProductTypeField.cs" />
     <Compile Include="Models\Rdbms\TypeFieldDto.cs" />
@@ -674,7 +985,7 @@
     <Compile Include="Models\TypeFields\AddressTypeField.cs" />
     <Compile Include="Models\TypeFields\ItemCacheTypeField.cs" />
     <Compile Include="Configuration\Outline\TypeFieldDefinitionsElement.cs" />
-    <Compile Include="Models\TypeFields\ITypeField.cs" />
+    <Compile Include="Models\TypeFields\Interfaces\ITypeField.cs" />
     <Compile Include="Configuration\Outline\TypeFieldCollection.cs" />
     <Compile Include="Configuration\Outline\TypeFieldElement.cs" />
     <Compile Include="Configuration\Outline\MerchelloSection.cs" />
@@ -707,15 +1018,13 @@
     <Compile Include="Properties\AssemblyVisibility.cs" />
     <Compile Include="Services\CustomerService.cs" />
     <Compile Include="Services\Interfaces\ICustomerService.cs" />
+    <Compile Include="TypeHelper.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup />
-  <ItemGroup>
-    <WCFMetadata Include="Service References\" />
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

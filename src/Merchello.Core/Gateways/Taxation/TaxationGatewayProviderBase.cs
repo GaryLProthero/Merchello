@@ -1,25 +1,53 @@
-﻿using System.Collections.Generic;
-using Merchello.Core.Models;
-using Merchello.Core.Services;
-using Umbraco.Core.Cache;
-
-namespace Merchello.Core.Gateways.Taxation
+﻿namespace Merchello.Core.Gateways.Taxation
 {
+    using System.Collections.Generic;
+    using Models;
+    using Services;
+    using Umbraco.Core.Cache;
+
     /// <summary>
     /// Defines a base taxation gateway provider
     /// </summary>
     public abstract class TaxationGatewayProviderBase : GatewayProviderBase, ITaxationGatewayProvider
     {
-        
-        protected TaxationGatewayProviderBase(IGatewayProviderService gatewayProviderService, IGatewayProvider gatewayProvider, IRuntimeCacheProvider runtimeCacheProvider)
-            : base(gatewayProviderService, gatewayProvider, runtimeCacheProvider)
-        { }
+        /// <summary>
+        /// Initializes a new instance of the <see cref="TaxationGatewayProviderBase"/> class.
+        /// </summary>
+        /// <param name="gatewayProviderService">
+        /// The gateway provider service.
+        /// </param>
+        /// <param name="gatewayProviderSettings">
+        /// The gateway provider settings.
+        /// </param>
+        /// <param name="runtimeCacheProvider">
+        /// The runtime cache provider.
+        /// </param>
+        protected TaxationGatewayProviderBase(
+            IGatewayProviderService gatewayProviderService,
+            IGatewayProviderSettings gatewayProviderSettings, 
+            IRuntimeCacheProvider runtimeCacheProvider)
+            : base(gatewayProviderService, gatewayProviderSettings, runtimeCacheProvider)
+        {            
+        }
+
+        /// <summary>
+        /// Gets a collection of <see cref="ITaxMethod"/> assoicated with this provider
+        /// </summary>
+        public IEnumerable<ITaxMethod> TaxMethods
+        {
+            get { return GatewayProviderService.GetTaxMethodsByProviderKey(GatewayProviderSettings.Key); }
+        }
 
         /// <summary>
         /// Attempts to create a <see cref="ITaxationGatewayMethod"/> for a given provider and country.  If the provider already 
         /// defines a tax rate for the country, the creation fails.
         /// </summary>
-        /// <param name="countryCode">The two character ISO country code</param>
+        /// <param name="countryCode">
+        /// The two character ISO country code
+        /// </param>
+        /// <returns>
+        /// The <see cref="ITaxationGatewayMethod"/>.
+        /// </returns>
         public virtual ITaxationGatewayMethod CreateTaxMethod(string countryCode)
         {
             return CreateTaxMethod(countryCode, 0);
@@ -42,7 +70,6 @@ namespace Merchello.Core.Gateways.Taxation
             GatewayProviderService.Save(taxationGatewayMethod.TaxMethod);
 
             // reset the TaxMethods so that they need to be pulled on the next request
-            TaxMethods = null;
         }
 
         /// <summary>
@@ -55,20 +82,10 @@ namespace Merchello.Core.Gateways.Taxation
         }
 
         /// <summary>
-        /// Deletes all <see cref="ITaxMethod"/>s associated with the provider
-        /// </summary>
-        internal void DeleteAllTaxMethods()
-        {
-            foreach(var taxMethod in TaxMethods) GatewayProviderService.Delete(taxMethod);
-
-            TaxMethods = null;
-        }
-        
-        /// <summary>
-        /// Gets a <see cref="ITaxationGatewayMethod"/> by it's unique 'key' (Guid)
+        /// Gets a <see cref="ITaxationGatewayMethod"/> by it's unique 'key' (GUID)
         /// </summary>
         /// <param name="countryCode">The two char ISO country code</param>
-        /// <returns><see cref="ITaxationGatewayMethod"/></returns>
+        /// <returns>The <see cref="ITaxationGatewayMethod"/></returns>
         public abstract ITaxationGatewayMethod GetGatewayTaxMethodByCountryCode(string countryCode);
 
         /// <summary>
@@ -77,18 +94,12 @@ namespace Merchello.Core.Gateways.Taxation
         /// <returns>A collection of <see cref="ITaxationGatewayMethod"/> </returns>
         public abstract IEnumerable<ITaxationGatewayMethod> GetAllGatewayTaxMethods();
 
-
-        private IEnumerable<ITaxMethod> _taxMethods;
         /// <summary>
-        /// Gets a collection of <see cref="ITaxMethod"/> assoicated with this provider
+        /// Deletes all <see cref="ITaxMethod"/>s associated with the provider
         /// </summary>
-        public IEnumerable<ITaxMethod> TaxMethods
+        internal void DeleteAllTaxMethods()
         {
-            get {
-                return _taxMethods ??
-                       (_taxMethods = GatewayProviderService.GetTaxMethodsByProviderKey(GatewayProvider.Key));
-            }
-            protected set { _taxMethods = value; }
-        }
+            foreach (var taxMethod in TaxMethods) GatewayProviderService.Delete(taxMethod);
+        }        
     }
 }

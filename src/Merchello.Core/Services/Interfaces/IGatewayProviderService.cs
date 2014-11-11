@@ -17,46 +17,46 @@ namespace Merchello.Core.Services
 
       
         /// <summary>
-        /// Saves a single instance of a <see cref="IGatewayProvider"/>
+        /// Saves a single instance of a <see cref="IGatewayProviderSettings"/>
         /// </summary>
-        /// <param name="gatewayProvider"></param>
+        /// <param name="gatewayProviderSettings"></param>
         /// <param name="raiseEvents">Optional boolean indicating whether or not to raise events</param>
-        void Save(IGatewayProvider gatewayProvider, bool raiseEvents = true);
+        void Save(IGatewayProviderSettings gatewayProviderSettings, bool raiseEvents = true);
 
         /// <summary>
-        /// Deletes a <see cref="IGatewayProvider"/>
+        /// Deletes a <see cref="IGatewayProviderSettings"/>
         /// </summary>
-        /// <param name="gatewayProvider"></param>
+        /// <param name="gatewayProviderSettings"></param>
         /// <param name="raiseEvents">Optional boolean indicating whether or not to raise events</param>
-        void Delete(IGatewayProvider gatewayProvider, bool raiseEvents = true);
+        void Delete(IGatewayProviderSettings gatewayProviderSettings, bool raiseEvents = true);
 
 
         /// <summary>
-        /// Gets a <see cref="IGatewayProvider"/> by it's unique 'Key' (Guid)
+        /// Gets a <see cref="IGatewayProviderSettings"/> by it's unique 'Key' (Guid)
         /// </summary>
         /// <param name="key"></param>
         /// <returns></returns>
-        IGatewayProvider GetGatewayProviderByKey(Guid key);
+        IGatewayProviderSettings GetGatewayProviderByKey(Guid key);
 
         /// <summary>
-        /// Gets a collection of <see cref="IGatewayProvider"/> by its type (Shipping, Taxation, Payment)
+        /// Gets a collection of <see cref="IGatewayProviderSettings"/> by its type (Shipping, Taxation, Payment)
         /// </summary>
         /// <param name="gatewayProviderType"></param>
         /// <returns></returns>
-        IEnumerable<IGatewayProvider> GetGatewayProvidersByType(GatewayProviderType gatewayProviderType);
+        IEnumerable<IGatewayProviderSettings> GetGatewayProvidersByType(GatewayProviderType gatewayProviderType);
 
         /// <summary>
-        /// Gets a collection of <see cref="IGatewayProvider"/> by ship country
+        /// Gets a collection of <see cref="IGatewayProviderSettings"/> by ship country
         /// </summary>
         /// <param name="shipCountry"></param>
         /// <returns></returns>
-        IEnumerable<IGatewayProvider> GetGatewayProvidersByShipCountry(IShipCountry shipCountry); 
+        IEnumerable<IGatewayProviderSettings> GetGatewayProvidersByShipCountry(IShipCountry shipCountry); 
 
         /// <summary>
-        /// Gets a collection containing all <see cref="IGatewayProvider"/>
+        /// Gets a collection containing all <see cref="IGatewayProviderSettings"/>
         /// </summary>
         /// <returns></returns>
-        IEnumerable<IGatewayProvider> GetAllGatewayProviders(); 
+        IEnumerable<IGatewayProviderSettings> GetAllGatewayProviders(); 
 
         #endregion
 
@@ -174,6 +174,84 @@ namespace Merchello.Core.Services
 
         #endregion
 
+        #region Notification
+
+        /// <summary>
+        /// Creates a <see cref="INotificationMethod"/> and saves it to the database
+        /// </summary>
+        /// <param name="providerKey">The <see cref="IGatewayProviderSettings"/> key</param>
+        /// <param name="name">The name of the notification (used in back office)</param>
+        /// <param name="serviceCode">The notification service code</param>        
+        /// <returns>An Attempt{<see cref="INotificationMethod"/>}</returns>
+        Attempt<INotificationMethod> CreateNotificationMethodWithKey(Guid providerKey, string name, string serviceCode);
+
+        /// <summary>
+        /// Saves a <see cref="INotificationMethod"/>
+        /// </summary>
+        /// <param name="method">The <see cref="INotificationMethod"/> to be saved</param>
+        void Save(INotificationMethod method);
+
+        /// <summary>
+        /// Deletes a <see cref="INotificationMethod"/>
+        /// </summary>
+        /// <param name="method">The <see cref="INotificationMethod"/> to be deleted</param>
+        void Delete(INotificationMethod method);
+
+        /// <summary>
+        /// Creates a <see cref="INotificationMessage"/> and saves it to the database
+        /// </summary>
+        /// <param name="methodKey">The <see cref="INotificationMethod"/> key</param>
+        /// <param name="name">The name of the message (primarily used in the back office UI)</param>
+        /// <param name="description">The name of the message (primarily used in the back office UI)</param>
+        /// <param name="fromAddress">The senders or "from" address</param>
+        /// <param name="recipients">A collection of recipient address</param>
+        /// <param name="bodyText">The body text of the message</param>
+        /// <returns>Attempt{INotificationMessage}</returns>
+        Attempt<INotificationMessage> CreateNotificationMessageWithKey(Guid methodKey, string name, string description, string fromAddress, IEnumerable<string> recipients, string bodyText);
+
+        /// <summary>
+        /// Saves a <see cref="INotificationMessage"/>
+        /// </summary>
+        /// <param name="message">The <see cref="INotificationMessage"/> to save</param>
+        void Save(INotificationMessage message);
+
+        /// <summary>
+        /// Deletes a <see cref="INotificationMessage"/>
+        /// </summary>
+        /// <param name="message">The <see cref="INotificationMessage"/> to be deleted</param>
+        void Delete(INotificationMessage message);
+
+        /// <summary>
+        /// Gets a collection of <see cref="INotificationMethod"/> for a give NotificationGatewayProvider
+        /// </summary>
+        /// <param name="providerKey">The unique 'key' of the NotificationGatewayProvider</param>
+        /// <returns>A collection of <see cref="INotificationMethod"/></returns>
+        IEnumerable<INotificationMethod> GetNotificationMethodsByProviderKey(Guid providerKey);
+
+        /// <summary>
+        /// Gets a collection of <see cref="INotificationMessage"/> associated with a <see cref="INotificationMethod"/>
+        /// </summary>
+        /// <param name="notificationMethodKey">The key (Guid) of the <see cref="INotificationMethod"/></param>
+        /// <returns>A collection of <see cref="INotificationMessage"/></returns>
+        IEnumerable<INotificationMessage> GetNotificationMessagesByMethodKey(Guid notificationMethodKey); 
+        
+        /// <summary>
+        /// Gets a <see cref="INotificationMethod"/> by it's unique key(Guid)
+        /// </summary>
+        /// <param name="notificationMessageKey">The unique key (Guid) of the <see cref="INotificationMessage"/></param>
+        /// <returns>A <see cref="INotificationMessage"/></returns>
+        INotificationMessage GetNotificationMessageByKey(Guid notificationMessageKey);
+
+        /// <summary>
+        /// Gets a collection of <see cref="INotificationMessage"/>s based on a monitor key
+        /// </summary>
+        /// <param name="monitorKey">The Notification Monitor Key (Guid)</param>
+        /// <returns>A collection of <see cref="INotificationMessage"/></returns>
+        IEnumerable<INotificationMessage> GetNotificationMessagesByMonitorKey(Guid monitorKey);
+
+
+        #endregion
+
         #region ShipMethod
 
         /// <summary>
@@ -205,16 +283,23 @@ namespace Merchello.Core.Services
         void Delete(IShipMethod shipMethod);
 
         /// <summary>
-        /// Gets a list of <see cref="IShipMethod"/> objects given a <see cref="IGatewayProvider"/> key and a <see cref="IShipCountry"/> key
+        /// Gets a list of <see cref="IShipMethod"/> objects given a <see cref="IGatewayProviderSettings"/> key and a <see cref="IShipCountry"/> key
         /// </summary>
         /// <returns>A collection of <see cref="IShipMethod"/></returns>
         IEnumerable<IShipMethod> GetShipMethodsByShipCountryKey(Guid providerKey, Guid shipCountryKey);
 
         /// <summary>
-        /// Gets a list of all <see cref="IShipMethod"/> objects given a <see cref="IGatewayProvider"/> key
+        /// Gets a list of all <see cref="IShipMethod"/> objects given a <see cref="IGatewayProviderSettings"/> key
         /// </summary>
         /// <returns>A collection of <see cref="IShipMethod"/></returns>
-        IEnumerable<IShipMethod> GetShipMethodsByShipCountryKey(Guid providerKey); 
+        IEnumerable<IShipMethod> GetShipMethodsByShipCountryKey(Guid providerKey);
+
+        /// <summary>
+        /// Gets a <see cref="IShipMethod"/> by it's unique key
+        /// </summary>
+        /// <param name="shipMethodKey">The <see cref="IShipMethod"/> key</param>
+        /// <returns>A <see cref="IShipMethod"/></returns>
+        IShipMethod GetShipMethodByKey(Guid shipMethodKey);
 
         #endregion
 
@@ -248,6 +333,13 @@ namespace Merchello.Core.Services
         #endregion
 
         #region ShipCountry
+
+        /// <summary>
+        /// Gets a <see cref="IShipCountry"/> by it's unique key (Guid)
+        /// </summary>
+        /// <param name="shipCountryKey">The unique key of the <see cref="IShipCountry"/></param>
+        /// <returns>The <see cref="IShipCountry"/></returns>
+        IShipCountry GetShipCountryByKey(Guid shipCountryKey);
 
         /// <summary>
         /// Gets a <see cref="IShipCountry"/> by CatalogKey and CountryCode
@@ -295,7 +387,7 @@ namespace Merchello.Core.Services
         /// <summary>
         /// Gets a <see cref="ITaxMethod"/> based on a provider and country code
         /// </summary>
-        /// <param name="providerKey">The unique 'key' of the <see cref="IGatewayProvider"/></param>
+        /// <param name="providerKey">The unique 'key' of the <see cref="IGatewayProviderSettings"/></param>
         /// <param name="countryCode">The country code of the <see cref="ITaxMethod"/></param>
         /// <returns>A collection <see cref="ITaxMethod"/></returns>
         ITaxMethod GetTaxMethodByCountryCode(Guid providerKey, string countryCode);
@@ -328,5 +420,17 @@ namespace Merchello.Core.Services
 
         #endregion
 
+        #region Warehouse
+
+        /// <summary>
+        /// Gets the default <see cref="IWarehouse"/>
+        /// </summary>
+        /// <returns>
+        /// The <see cref="IWarehouse"/>.
+        /// </returns>
+        IWarehouse GetDefaultWarehouse();
+
+
+        #endregion
     }
 }

@@ -1,28 +1,28 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using Merchello.Core.Models;
-using Merchello.Core.Models.EntityBase;
-using Merchello.Core.Models.Rdbms;
-using Merchello.Core.Persistence.Factories;
-using Merchello.Core.Persistence.Querying;
-using Umbraco.Core;
-using Umbraco.Core.Cache;
-using Umbraco.Core.Persistence;
-using Umbraco.Core.Persistence.Querying;
-using IDatabaseUnitOfWork = Merchello.Core.Persistence.UnitOfWork.IDatabaseUnitOfWork;
-
-namespace Merchello.Core.Persistence.Repositories
+﻿namespace Merchello.Core.Persistence.Repositories
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using Factories;
+    using Models;
+    using Models.EntityBase;
+    using Models.Rdbms;
+    using Querying;
+    using Umbraco.Core;
+    using Umbraco.Core.Cache;
+    using Umbraco.Core.Persistence;
+    using Umbraco.Core.Persistence.Querying;
+    using IDatabaseUnitOfWork = UnitOfWork.IDatabaseUnitOfWork;
+
     internal class ItemCacheRepository : MerchelloPetaPocoRepositoryBase<IItemCache>, IItemCacheRepository
     {
-        private readonly ILineItemRepository _lineItemRepository;
+        private readonly IItemCacheLineItemRepository _itemCacheLineItemRepository;
 
 
-        public ItemCacheRepository(IDatabaseUnitOfWork work, IRuntimeCacheProvider cache, ILineItemRepository lineItemRepository)
+        public ItemCacheRepository(IDatabaseUnitOfWork work, IRuntimeCacheProvider cache, IItemCacheLineItemRepository itemCacheLineItemRepository)
             : base(work, cache)
         {
-            _lineItemRepository = lineItemRepository;
+            _itemCacheLineItemRepository = itemCacheLineItemRepository;
         }
 
 
@@ -71,27 +71,7 @@ namespace Merchello.Core.Persistence.Repositories
         }
 
         #endregion
-
-        private LineItemCollection GetLineItemCollection(Guid itemCacheKey)
-        {
-            var sql = new Sql();
-            sql.Select("*")
-                .From<ItemCacheItemDto>()
-                .Where<ItemCacheItemDto>(x => x.ContainerKey == itemCacheKey);
-
-            var dtos = Database.Fetch<ItemCacheItemDto>(sql);
-
-            //var lineItems = _lineItemRepository.GetByContainerId(itemCacheId);
-
-            var factory = new LineItemFactory();
-            var collection = new LineItemCollection();
-            foreach (var dto in dtos)
-            {
-                collection.Add(factory.BuildEntity(dto));
-            }
-
-            return collection;
-        }
+      
 
         #region Overrides of MerchelloPetaPocoRepositoryBase<IItemCache>
 
@@ -129,7 +109,7 @@ namespace Merchello.Core.Persistence.Repositories
             Database.Insert(dto);
             entity.Key = dto.Key;
 
-            _lineItemRepository.SaveLineItem(entity.Items, entity.Key);
+            _itemCacheLineItemRepository.SaveLineItem(entity.Items, entity.Key);
 
             entity.ResetDirtyProperties();
         }
@@ -142,7 +122,7 @@ namespace Merchello.Core.Persistence.Repositories
             var dto = factory.BuildDto(entity);
             Database.Update(dto);
 
-            _lineItemRepository.SaveLineItem(entity.Items, entity.Key);
+            _itemCacheLineItemRepository.SaveLineItem(entity.Items, entity.Key);
 
             entity.ResetDirtyProperties();
         }
@@ -169,5 +149,25 @@ namespace Merchello.Core.Persistence.Repositories
 
         #endregion
 
+        private LineItemCollection GetLineItemCollection(Guid itemCacheKey)
+        {
+            var sql = new Sql();
+            sql.Select("*")
+                .From<ItemCacheItemDto>()
+                .Where<ItemCacheItemDto>(x => x.ContainerKey == itemCacheKey);
+
+            var dtos = Database.Fetch<ItemCacheItemDto>(sql);
+
+            //var lineItems = _lineItemRepository.GetByContainerId(itemCacheId);
+
+            var factory = new LineItemFactory();
+            var collection = new LineItemCollection();
+            foreach (var dto in dtos)
+            {
+                collection.Add(factory.BuildEntity(dto));
+            }
+
+            return collection;
+        }
     }
 }

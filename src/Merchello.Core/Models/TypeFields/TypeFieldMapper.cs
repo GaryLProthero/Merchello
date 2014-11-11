@@ -7,7 +7,9 @@ using Merchello.Core.Configuration.Outline;
 
 namespace Merchello.Core.Models.TypeFields
 {
-    internal abstract class TypeFieldMapper<T> : TypeFieldMapperBase, ITypeFieldMapper<T>
+    using System.Collections.Generic;
+
+    public abstract class TypeFieldMapper<T> : TypeFieldMapperBase, ITypeFieldMapper<T>
     {
 
         protected static readonly ConcurrentDictionary<T,ITypeField> CachedTypeFields = new ConcurrentDictionary<T, ITypeField>();
@@ -16,6 +18,11 @@ namespace Merchello.Core.Models.TypeFields
         /// Builds the TypeField cache for the respective type
         /// </summary>
         internal abstract void BuildCache();
+
+        /// <summary>
+        /// Gets the custom type fields.
+        /// </summary>
+        public abstract IEnumerable<ITypeField> CustomTypeFields { get; } 
 
         /// <summary>
         /// Returns the respective enum value for a given <see cref="TypeField"/> TypeKey

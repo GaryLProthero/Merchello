@@ -1,64 +1,77 @@
-﻿using System.Net.Http.Formatting;
-using umbraco;
-using umbraco.BusinessLogic.Actions;
-using Umbraco.Web.Models.Trees;
-using Umbraco.Web.Mvc;
-using Umbraco.Web.Trees;
-
-namespace Merchello.Web.Trees
+﻿namespace Merchello.Web.Trees
 {
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Net.Http.Formatting;
+    using Core.Configuration;
+    using Core.Configuration.Outline;
+
+    using Merchello.Web.Reporting;
+
+    using umbraco;
+    using umbraco.BusinessLogic.Actions;
+    using umbraco.cms.presentation;
+
+    using Umbraco.Core;
+    using Umbraco.Web.Models.Trees;
+    using Umbraco.Web.Mvc;
+    using Umbraco.Web.Trees;
+
+    /// <summary>
+    /// The merchello tree controller.
+    /// </summary>
     [Tree("merchello", "merchello", "Merchello")]
     [PluginController("Merchello")]
     public class MerchelloTreeController : TreeController
     {
+        /// <summary>
+        /// The get tree nodes.
+        /// </summary>
+        /// <param name="id">
+        /// The id.
+        /// </param>
+        /// <param name="queryStrings">
+        /// The query strings.
+        /// </param>
+        /// <returns>
+        /// The <see cref="TreeNodeCollection"/>.
+        /// </returns>
         protected override TreeNodeCollection GetTreeNodes(string id, FormDataCollection queryStrings)
         {
-            //we only support one tree level for data types
-            //if (id != Constants.System.Root.ToInvariantString())
-            //{
-            //    throw new HttpResponseException(HttpStatusCode.NotFound);
-            //}
             var collection = new TreeNodeCollection();
-            if (id == "settings")
-            {
-                collection.Add(CreateTreeNode("shipping", "settings", queryStrings, "Shipping", "icon-truck", false, "merchello/merchello/Shipping/manage"));                
-                collection.Add(CreateTreeNode("taxation", "settings", queryStrings, "Taxation", "icon-piggy-bank", false, "merchello/merchello/Taxation/manage"));
-                collection.Add(CreateTreeNode("payment", "settings", queryStrings, "Payment", "icon-bill-dollar", false, "merchello/merchello/Payment/manage"));
-                collection.Add(CreateTreeNode("gateways", "settings", queryStrings, "Gateway Providers", "icon-trafic", false, "merchello/merchello/GatewayProviders/manage"));
-                //collection.Add(CreateTreeNode("vendors", "settings", queryStrings, "Vendors", "icon-handshake", false, "merchello/merchello/Vendors/manage"));
-                //collection.Add(CreateTreeNode("notifications", "settings", queryStrings, "Notifications", "icon-chat", false, "merchello/merchello/Notifications/manage"));
-                //collection.Add(CreateTreeNode("debuglog", "settings", queryStrings, "Debug Log", "icon-alert", false, "merchello/merchello/Debug/manage"));
-            }
-            else if (id == "reports")
-            {
-                collection.Add(CreateTreeNode("salesOverTime", "reports", queryStrings, "Sales Over Time", "icon-loading", false, "merchello/merchello/SalesOverTime/manage"));
-                collection.Add(CreateTreeNode("salesByItem", "reports", queryStrings, "Sales By Item", "icon-barcode", false, "merchello/merchello/SalesByItem/manage"));
-                collection.Add(CreateTreeNode("taxesByDestination", "reports", queryStrings, "Taxes By Destination", "icon-piggy-bank", false, "merchello/merchello/TaxesByDestination/manage"));
-            }
-            else
-            {
-                collection.Add(CreateTreeNode("catalog", "", queryStrings, "Catalog", "icon-barcode", false, "merchello/merchello/ProductList/manage"));
-                collection.Add(CreateTreeNode("orders", "", queryStrings, "Orders", "icon-receipt-dollar", false, "merchello/merchello/OrderList/manage"));
-                //collection.Add(CreateTreeNode("customers", "", queryStrings, "Customers", "icon-user", false, "merchello/merchello/CustomerList/manage"));
-                //collection.Add(CreateTreeNode("reports", "", queryStrings, "Reports", "icon-bar-chart", true, "merchello/merchello/Reports/manage"));
-                collection.Add(CreateTreeNode("settings", "", queryStrings, "Settings", "icon-settings", true, "merchello/merchello/Settings/manage"));
-            }
 
-            //collection.AddRange(
-            //    Services.DataTypeService.GetAllDataTypeDefinitions()
-            //            .OrderBy(x => x.Name)
-            //            .Select(dt =>
-            //                    CreateTreeNode(
-            //                        dt.Id.ToInvariantString(),
-            //                        queryStrings,
-            //                        dt.Name,
-            //                        "icon-autofill",
-            //                        false)));
+            var backoffice = MerchelloConfiguration.Current.BackOffice;
+
+            var rootTrees = backoffice.GetTrees().Where(x => x.Visible).ToArray();
+
+            var currentTree = rootTrees.FirstOrDefault(x => x.Id == id && x.Visible);
+
+            collection.AddRange(
+                currentTree != null
+                    ? 
+                        currentTree.Id == "reports" ? 
+                        GetAttributeDefinedTrees(queryStrings) :
+                        currentTree.SubTree.GetTrees().Where(x => x.Visible)
+                            .Select(tree => GetTreeNodeFromConfigurationElement(tree, queryStrings, currentTree))
+
+                    : backoffice.GetTrees().Where(x => x.Visible)
+                            .Select(tree => GetTreeNodeFromConfigurationElement(tree, queryStrings)));
+
             return collection;
         }
 
-        // TODO : Umbraco Refactored the TreeNodeController and it's underlying collections.  This
-        // TODO : broke with the introduction of the Umbraco Nightly Build 111
+        /// <summary>
+        /// The get menu for node.
+        /// </summary>
+        /// <param name="id">
+        /// The id.
+        /// </param>
+        /// <param name="queryStrings">
+        /// The query strings.
+        /// </param>
+        /// <returns>
+        /// The <see cref="MenuItemCollection"/>.
+        /// </returns>
         protected override MenuItemCollection GetMenuForNode(string id, FormDataCollection queryStrings)
         {
             var menu = new MenuItemCollection();
@@ -66,27 +79,78 @@ namespace Merchello.Web.Trees
             if (id == "settings")
             {
                 menu.Items.Add<RefreshNode, ActionRefresh>(ui.Text("actions", ActionRefresh.Instance.Alias), true);
+            }     
+
+            if (id == "orders")
+            {
+                menu.Items.Add<CreateChildEntity, ActionNew>("Create Order", true).Alias = "createOrder";
             }
 
-            //if (id == Constants.System.Root.ToInvariantString())
-            //{
-            //    // root actions              
-            //    menu.Items.Add<RefreshNode, ActionRefresh>(ui.Text("actions", ActionRefresh.Instance.Alias), true);
-            //    return menu;
-            //}
-            //else if (id == "catalog")
-            //{
+            ////if (id == "catalog")
+            ////{
             //    //create product
-            //    menu.Items.Add<MerchelloActionNewProduct>(ui.Text("actions", MerchelloActionNewProduct.Instance.Alias));
-            //}
-            //else
-            //{
-                //only have refres for each node
-             //menu.Items.Add<RefreshNode, ActionRefresh>(ui.Text("actions", ActionRefresh.Instance.Alias), true);
-            //}
+            ////    menu.Items.Add<MerchelloActionNewProduct>(ui.Text("actions", MerchelloActionNewProduct.Instance.Alias));
+            ////}
 
             return menu;
         }
 
+        /// <summary>
+        /// The get tree node from configuration element.
+        /// </summary>
+        /// <param name="tree">
+        /// The tree.
+        /// </param>
+        /// <param name="queryStrings">
+        /// The query strings.
+        /// </param>
+        /// <param name="parentTree">
+        /// The parent tree.
+        /// </param>
+        /// <returns>
+        /// The <see cref="TreeNode"/>.
+        /// </returns>
+        private TreeNode GetTreeNodeFromConfigurationElement(TreeElement tree, FormDataCollection queryStrings, TreeElement parentTree = null)
+        {
+            var hasSubs = tree.SubTree != null && tree.SubTree.GetTrees().Any();
+
+            if (tree.Id == "reports" && hasSubs == false) hasSubs = ReportApiControllerResolver.Current.ResolvedTypes.Any();
+
+            return CreateTreeNode(
+                tree.Id,
+                parentTree == null ? string.Empty : parentTree.Id,
+                queryStrings,
+                tree.Title,
+                tree.Icon,
+                hasSubs,
+                tree.RoutePath);
+        }
+
+        /// <summary>
+        /// Adds attribute defined trees.
+        /// </summary>
+        /// <param name="queryStrings">
+        /// The query Strings.
+        /// </param>
+        private IEnumerable<TreeNode> GetAttributeDefinedTrees(FormDataCollection queryStrings)
+        {
+            var types = ReportApiControllerResolver.Current.ResolvedTypes.ToArray();
+            if (!types.Any()) return new TreeNode[] { };
+
+
+            var atts = types.Select(x => x.GetCustomAttribute<BackOfficeTreeAttribute>(true)).OrderBy(x => x.SortOrder);
+
+            return
+                atts.Select(
+                    att =>
+                    CreateTreeNode(
+                        att.RouteId,
+                        att.ParentRouteId,
+                        queryStrings,
+                        att.Title,
+                        att.Icon,
+                        false,
+                        att.RoutePath));
+        }
     }
 }

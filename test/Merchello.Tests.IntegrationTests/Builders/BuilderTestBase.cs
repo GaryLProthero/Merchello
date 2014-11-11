@@ -32,11 +32,7 @@ namespace Merchello.Tests.IntegrationTests.Builders
         {
             base.FixtureSetup();
 
-            MerchelloContext = new MerchelloContext(new ServiceContext(new PetaPocoUnitOfWorkProvider()),
-                new CacheHelper(new NullCacheProvider(),
-                    new NullCacheProvider(),
-                    new NullCacheProvider()));
-
+       
             PreTestDataWorker.DeleteAllShipCountries();
 
             var defaultCatalog = PreTestDataWorker.WarehouseService.GetDefaultWarehouse().WarehouseCatalogs.FirstOrDefault();
@@ -47,7 +43,7 @@ namespace Merchello.Tests.IntegrationTests.Builders
             ((ServiceContext)MerchelloContext.Services).ShipCountryService.Save(usCountry);
 
             var key = Core.Constants.ProviderKeys.Shipping.FixedRateShippingProviderKey;
-            var rateTableProvider = (FixedRateShippingGatewayProvider)MerchelloContext.Gateways.Shipping.CreateInstance(key);
+            var rateTableProvider = (FixedRateShippingGatewayProvider)MerchelloContext.Gateways.Shipping.GetProviderByKey(key);
             rateTableProvider.DeleteAllActiveShipMethods(usCountry);
 
             #region Add and configure 3 rate table shipmethods
@@ -110,7 +106,7 @@ namespace Merchello.Tests.IntegrationTests.Builders
 
 
             Customer.ExtendedData.AddAddress(BillingAddress, AddressType.Billing);
-            ItemCache = new Core.Models.ItemCache(Customer.EntityKey, ItemCacheType.Checkout);
+            ItemCache = new Core.Models.ItemCache(Customer.Key, ItemCacheType.Checkout);
 
             PreTestDataWorker.ItemCacheService.Save(ItemCache);
 
@@ -131,6 +127,5 @@ namespace Merchello.Tests.IntegrationTests.Builders
             SalePreparationMock.SaveShipmentRateQuote(shipRateQuote);
         }
 
-        protected IMerchelloContext MerchelloContext { get; private set; }
     }
 }

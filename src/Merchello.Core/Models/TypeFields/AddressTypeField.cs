@@ -4,14 +4,17 @@ using Merchello.Core.Configuration.Outline;
 
 namespace Merchello.Core.Models.TypeFields
 {
+    using System.Collections.Generic;
+    using System.Security.Cryptography.X509Certificates;
+
     /// <summary>
-    /// Identifies an address as either residential or commercial for shipping estimations 
+    /// Identifies an address as either shipping or billing
     /// </summary>
     internal sealed class AddressTypeField : TypeFieldMapper<AddressType>, IAddressTypeField
     {
         internal AddressTypeField()
         {
-            if(CachedTypeFields.IsEmpty) BuildCache();
+            if (CachedTypeFields.IsEmpty) BuildCache();
         }
 
 #region Overrides TypeFieldMapper<AddressType>
@@ -23,7 +26,15 @@ namespace Merchello.Core.Models.TypeFields
             AddUpdateCache(AddressType.Billing,  new TypeField("Billing", "Billing", Constants.TypeFieldKeys.Address.BillingAddressKey));
         }
 
-#endregion
+        public override IEnumerable<ITypeField> CustomTypeFields
+        {
+            get
+            {
+                return Addresses.GetTypeFields().Select(GetTypeField);
+            }
+        }
+
+        #endregion
 
         /// <summary>
         /// Indicates the address is a residential address
@@ -34,7 +45,7 @@ namespace Merchello.Core.Models.TypeFields
         }
 
         /// <summary>
-        /// Indicates the address is a commercial address
+        /// Indicates the address is a billing address
         /// </summary>
         public ITypeField Billing
         {
